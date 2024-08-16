@@ -6,6 +6,19 @@ import { useState } from 'react';
 function Todolist() {
     
     const[task , setTask]= useState("");
+    const[taskList,setTaskList]=useState([]);
+
+    function addTask(){
+        // let arr=taskList
+        // arr.push(task)
+        // setTaskList(arr)
+
+        setTaskList((prev)=> [...prev,task])
+
+
+
+        setTask("")
+    }
    
   return (
     <>
@@ -13,11 +26,16 @@ function Todolist() {
         <div>
             
             <input type="text" value= {task} onChange={(e)=>setTask(e.target.value)}></input>
-            <button>SAVE</button>
+            <button onClick={addTask}>SAVE</button>
             
         </div>
 
-        <p>{task}</p>
+        
+
+        {taskList.map((item,i)=>
+             <li key={i}> {item} </li>
+        )}
+        
 
         
     </>
